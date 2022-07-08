@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>745</width>
+    <height>503</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QTabWidget" name="tabs">
+      <property name="styleSheet">
+       <string notr="true">QTabWidget{
+background-image: url(:/luffy/merry.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	qproperty-scaledContents: true;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="main_tab">
+       <property name="styleSheet">
+        <string notr="true">QWidget{
+    background-image: url(:/luffy/gear5.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	qproperty-scaledContents: true;
+}
+
+QLabel{
+background-image: url(:/luffy/gear4TankMan.jpg);
+}
+
+QPushButton{
+background-image: url(:/luffy/gear4TankMan.jpg);
+}
+</string>
+       </property>
+       <attribute name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/luffy/logoOnePiece.jpg</normaloff>:/luffy/logoOnePiece.jpg</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>One Piece</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_8"/>
+      </widget>
+      <widget class="QWidget" name="salaControl_tab">
+       <property name="styleSheet">
+        <string notr="true">QWidget{
+background-image: url(:/luffy/merry.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	qproperty-scaledContents: true;
+}
+
+QLabel{
+background-image: url(:/luffy/gear4TankMan.jpg);
+}
+
+QPushButton{
+background-image: url(:/luffy/gear4TankMan.jpg);
+}
+</string>
+       </property>
+       <attribute name="title">
+        <string>Sala de Control</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item alignment="Qt::AlignRight|Qt::AlignVCenter">
+           <widget class="QLabel" name="label">
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+background-image: url(:/luffy/gear4TankMan.jpg);
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Capítulos totales: 0</string>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Visto: 0%</string>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Capítulos vistos: 0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Añadir +1 cap a Visto</string>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>Añadir +3 cap a Visto</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>Añadir +5 cap a Visto</string>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="text">
+             <string>Añadir +10 cap a Visto</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="historial">
+       <property name="styleSheet">
+        <string notr="true">QWidget{
+background-color: rgb(127, 48, 252)
+}
+
+QGroupBox{
+background-color: rgb(255, 255, 0)
+}
+
+QLabel{
+background-color: rgb(255, 255, 0)
+}
+
+QLineEdit{
+background-color: rgb(255, 255, 255)
+}
+
+QColumnView{
+background-color: rgb(255, 255, 255)
+}</string>
+       </property>
+       <attribute name="title">
+        <string>Historial</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Datos de los capítulos vistos:</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Capítulo</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Día</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_2"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Personas</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEdit_3"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QColumnView" name="columnView"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>745</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

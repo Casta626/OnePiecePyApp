@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="luffy">
+    <file>thousandSunny.jpg</file>
+    <file>logoOnePiece.jpg</file>
+    <file>merry.jpg</file>
+    <file>gear5.jpg</file>
+    <file>gear4BounceMan.jpg</file>
+    <file>gear4SnakeMan.jpg</file>
+    <file>gear4TankMan.jpg</file>
+    <file>luffyultrainstinto.jpg</file>
+  </qresource>
+</RCC>

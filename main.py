@@ -1,8 +1,13 @@
 # This Python file uses the following encoding: utf-8
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
+
+
 from prueba import Ui_MainWindow
 import webScraping
+import DB
+
+
 
 
 
@@ -14,6 +19,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         currentCap = 334
         print(lastCap)
         self.obtenerPorcentajeYDiferencia(currentCap,int(lastCap))
+        self.database = DB.DB()
+        self.database.conectar()
 
     def obtenerPorcentajeYDiferencia(self,currentCap,lastCap):
         porcentaje = (currentCap*100) / lastCap 

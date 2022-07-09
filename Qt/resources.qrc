@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="luffy">
+    <file>LSHD.jpg</file>
+    <file>merry2.jpg</file>
+    <file>LS.jpg</file>
     <file>thousandSunny.jpg</file>
     <file>logoOnePiece.jpg</file>
     <file>merry.jpg</file>

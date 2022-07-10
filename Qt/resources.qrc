@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="luffy">
+    <file>blanco.jpg</file>
     <file>LSHD.jpg</file>
     <file>merry2.jpg</file>
     <file>LS.jpg</file>

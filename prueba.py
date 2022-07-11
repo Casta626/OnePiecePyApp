@@ -221,7 +221,7 @@ class Ui_MainWindow(object):
 "background-color: rgb(255, 255, 255)\n"
 "}\n"
 "\n"
-"QColumnView{\n"
+"QTableView{\n"
 "background-color: rgb(255, 255, 255)\n"
 "}")
         self.verticalLayout_6 = QVBoxLayout(self.historial)

@@ -1,16 +1,31 @@
 <RCC>
   <qresource prefix="luffy">
-    <file>blanco.jpg</file>
+    <file>mundoLogo.jfif</file>
     <file>LSHD.jpg</file>
     <file>merry2.jpg</file>
     <file>LS.jpg</file>
     <file>thousandSunny.jpg</file>
-    <file>logoOnePiece.jpg</file>
     <file>merry.jpg</file>
     <file>gear5.jpg</file>
     <file>gear4BounceMan.jpg</file>
     <file>gear4SnakeMan.jpg</file>
     <file>gear4TankMan.jpg</file>
     <file>luffyultrainstinto.jpg</file>
+  </qresource>
+  <qresource prefix="Actions">
+    <file>infinitoLogo.png</file>
+    <file>3logo.png</file>
+    <file>5logo.png</file>
+    <file>10logo.png</file>
+    <file>1logo.png</file>
+    <file>database--arrow.png</file>
+    <file>database--minus.png</file>
+    <file>database--plus.png</file>
+  </qresource>
+  <qresource prefix="logo">
+    <file>mundoLogo.jfif</file>
+    <file>foneglifoLogo.jfif</file>
+    <file>lawLogo.png</file>
+    <file>logoOnePiece.jpg</file>
   </qresource>
 </RCC>

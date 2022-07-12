@@ -23,9 +23,9 @@
     <file>database--plus.png</file>
   </qresource>
   <qresource prefix="logo">
-    <file>mundoLogo.jfif</file>
-    <file>foneglifoLogo.jfif</file>
+    <file>historialLogo.jfif</file>
     <file>lawLogo.png</file>
-    <file>logoOnePiece.jpg</file>
+    <file>historialLogo.png</file>
+    <file>logoOnePiece2.png</file>
   </qresource>
 </RCC>

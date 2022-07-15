@@ -24,6 +24,20 @@ class ObtenerUltimoCapitulo:
         ultimocap = cap[1]
         #print(ultimocap) # Imprime el segundo elemento del array
         return ultimocap
+
+    def pruebaNombreCapitulo(self):
+        self.web = "https://www.animedatos.com/2019/02/capitulos-one-piece-sin-relleno.html"
+        self.resultado= requests.get(self.web) # Obtenemos el contenido de la página
+        self.contenido = self.resultado.text  # Lo pasamos a texto
+
+        self.sooup = BeautifulSoup(self.contenido, 'lxml') # lxml es una libreria para parsear el html
+
+        self.caja = self.sooup.find('div', id='post-toc') # Busca el elemento con la clase 'post-body entry-content'
+        self.capitulo = self.caja.find('b').get_text()
+        
+        print(self.caja)
+
+    
     
     
 

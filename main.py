@@ -4,11 +4,14 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlRelation, QSqlRelationalTableModel
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
+from PySide6.QtCore import QUrl
+from PySide6.QtGui import (QPixmap)
 from datetime import datetime
 
-from prueba import Ui_MainWindow
+from ui_main import Ui_MainWindow
 import webScraping
 import DB
+
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -16,17 +19,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.lastCap = webScraping.ObtenerUltimoCapitulo().get_last_episode()
-        self.currentCap = 400
+        self.currentCap = 410
         self.capActual = str(self.currentCap)
         print(self.lastCap)
-        self.porcentaje = self.obtenerPorcentajeYDiferencia(
-            self.currentCap, int(self.lastCap))
+        self.porcentaje = self.obtenerPorcentajeYDiferencia(self.currentCap, int(self.lastCap))
+
+        self.action_1_Cap.triggered.connect(self.nueva)
+        self.actionEditar_Cap.triggered.connect(self.modificar)
+        self.actionEliminar_Cap.triggered.connect(self.borrar)
+        self.mas1_button.clicked.connect(self.nueva)
+
+        #self.webEngine.load(QUrl("https://www3.animeflv.net/ver/one-piece-tv-100"))
+    
+        #self.imgFondo_label.setPixmap(QPixmap("logoOnePiece2.png"))
+
+        
+
         self.conectar()
-        # self.database = DB.DB()
-        # self.database.conectar()
-        self.imagenFondo = "gear5.jpg"
-        # self.capVistos_label.setText("Capítulos vistos: "+str(self.currentCap))
-        # self.capTotales_label.setText("Capítulos totales: "+str(self.lastCap))
+
+    def avanzarHastaUltimoCap():
+            print("Me pican los cocos")
+    a= 102-87
+    num = a
+    for i in range(num):
+        avanzarHastaUltimoCap()
 
     def obtenerPorcentajeYDiferencia(self, currentCap, lastCap):
         porcentaje = (currentCap*100) / lastCap
@@ -38,17 +54,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.capVistos_label.setText("Capítulos vistos: "+str(currentCap))
         self.capTotales_label.setText("Capítulos totales: "+str(lastCap))
 
+        # Hacer if con un num random por opening y ending
+
+        # if  self.capActual < 
+
         if diferencia == 0:
-            print("Llegaste al último capítulo")
+            self.gB_SC.setTitle("Llegaste al último capítulo")
         if diferencia > 0:
-            print("Faltan "+str(diferencia)+" capítulos")
+            self.gB_SC.setTitle("Faltan "+str(diferencia)+" capítulos")
         # print("Diferencia: " + str(diferencia))
+        if self.capActual.endswith("0"):
+            self.gB_SC.setTitle("Otros 10 capítulos fuera") # Si el capítulo actual termina en 0, es porque estamos en el capítulo 10 
         if self.capActual.endswith("00"):
-            print("Ya te has ventilado otros 100 capítulos, ya queda menos")
+            self.gB_SC.setTitle("Ya te has ventilado otros 100 capítulos, ya queda menos") # Si el capítulo actual termina en 00, es porque estamos en el capítulo 100
+            
 
     def conectar(self):
         self.db = QSqlDatabase("QSQLITE")
-        self.db.setDatabaseName("onepi.sqlite")
+        self.db.setDatabaseName("OnePieceDB.sqlite")
 
         self.db.open()
 
@@ -60,11 +83,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.modelo.select()
         # Renombramos las cabeceras de la tabla
         self.modelo.setHeaderData(0, Qt.Horizontal, "Capítulo")
-        self.modelo.setHeaderData(1, Qt.Horizontal, "Día")
-        self.modelo.setHeaderData(2, Qt.Horizontal, "Personas")
+        self.modelo.setHeaderData(1, Qt.Horizontal, "Título")
+        self.modelo.setHeaderData(2, Qt.Horizontal, "Día")
+        self.modelo.setHeaderData(3, Qt.Horizontal, "Personas")
         self.tablaDB.setModel(self.modelo)
         # Ajustamos el tamaño de las columnas al contenido
         self.tablaDB.resizeColumnsToContents()
+        self.tablaDB.isFullScreen()
         # Deshabilitamos la edición directa de la tabla
         self.tablaDB.setEditTriggers(QAbstractItemView.NoEditTriggers)
         # Establecemos que se seleccionen filas completas en lugar de celdas individuales
@@ -90,10 +115,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.fila = seleccion.indexes()[0].row()
             # Obtenemos los valores id, titulo y artista del modelo en esa fila
             id = self.modelo.index(self.fila, 0).data()
-            dia = self.modelo.index(self.fila, 1).data()
-            personas = self.modelo.index(self.fila, 2).data()
+            titulo = self.modelo.index(self.fila, 1).data()
+            dia = self.modelo.index(self.fila, 2).data()
+            personas = self.modelo.index(self.fila, 3).data()
             # Modificamos los campos del formulario para establecer esos valores
             self.capitulo_LE.setText(str(id))
+            self.titulo_LE.setText(str(titulo))
             self.dia_LE.setText(str(dia))
             self.personas_LE.setText(str(personas))
 
@@ -106,12 +133,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.fila >= 0:
             # Obtenemos los valores de los campos del formulario
             id = self.capitulo_LE.text()
-            producto = self.dia_LE.text()
-            precio = self.personas_LE.text()
+            titulo = self.titulo_LE.text()
+            dia = self.dia_LE.text()
+            personas = self.personas_LE.text()
             # Actualizamos los campos en el modelo
             self.modelo.setData(self.modelo.index(self.fila, 1), id)
-            self.modelo.setData(self.modelo.index(self.fila, 2), producto)
-            self.modelo.setData(self.modelo.index(self.fila, 3), precio)
+            self.modelo.setData(self.modelo.index(self.fila, 1), titulo)
+            self.modelo.setData(self.modelo.index(self.fila, 2), dia)
+            self.modelo.setData(self.modelo.index(self.fila, 3), personas)
             # Ejecutamos los cambios en el modelo
             self.modelo.submit()
 
@@ -123,13 +152,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Seleccionamos la fila nueva
         self.tablaDB.selectRow(nuevaFila)
         # Ponemos en blanco el texto del título en el formulario
-        self.dia_LE.setText(datetime.today().strftime("%d/%m/%Y"))
+        dia=(datetime.today().strftime("%d/%m/%Y-%H:%M"))
         # Ponemos el comboBox de artistas al primero de la lista
         self.personas_LE.setText("")
+        self.titulo_LE.setText("")
         # Establecemos en blanco los valores (título y artista) de esa nueva fila
         self.modelo.setData(self.modelo.index(nuevaFila, 1), "")
-        self.modelo.setData(self.modelo.index(nuevaFila, 2), "")
+        self.modelo.setData(self.modelo.index(nuevaFila, 2), dia)
         self.modelo.setData(self.modelo.index(nuevaFila, 3), "")
+        self.modelo.setData(self.modelo.index(nuevaFila, 4), "")
         # Ejecutamos los cambios en el modelo
         self.modelo.submit()
 
@@ -144,8 +175,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.fila = -1
             # Reseteamos los valores en los campos del formulario
             self.capitulo_LE.setText("")
+            self.titulo_LE.setText("")
             self.dia_LE.setText("")
             self.personas_LE.setText("")
+            
 
 
 if __name__ == "__main__":

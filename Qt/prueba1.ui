@@ -6,12 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1055</width>
-    <height>708</height>
+    <width>630</width>
+    <height>481</height>
    </rect>
-  </property>
-  <property name="cursor">
-   <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -39,8 +36,6 @@ QPushButton {
  border: 1px solid black;
  border-radius: 5px ;
  background-color: rgb(255, 255, 135);
-	
-
 }
 
 QPushButton:hover {
@@ -54,24 +49,46 @@ QPushButton:hover {
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="main_tab">
+      <widget class="QWidget" name="Fondos">
        <property name="styleSheet">
-        <string notr="true">QWidget#main_tab{
-    background-image: url(:/luffy/gear5.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
-}</string>
+        <string notr="true"/>
        </property>
        <attribute name="icon">
         <iconset resource="resources.qrc">
-         <normaloff>:/logo/logoOnePiece2.png</normaloff>:/logo/logoOnePiece2.png</iconset>
+         <normaloff>:/luffy/LS.jpg</normaloff>:/luffy/LS.jpg</iconset>
        </attribute>
        <attribute name="title">
-        <string>One Piece</string>
+        <string>Fondos</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_8"/>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>600</width>
+            <height>338</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>1920</width>
+            <height>1080</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resources.qrc">:/luffy/luffyultrainstinto.jpg</pixmap>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="salaControl_tab">
        <property name="styleSheet">
@@ -94,76 +111,14 @@ QPushButton:hover {
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="apanio">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_2">
-          <property name="maximumSize">
-           <size>
-            <width>400</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_3">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_4">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_5">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_6">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_7">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apanio_8">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
+         <widget class="QTableView" name="webEngine"/>
         </item>
         <item>
          <widget class="QGroupBox" name="gB_SC">
           <property name="font">
            <font>
             <family>Ink Free</family>
-            <pointsize>18</pointsize>
+            <pointsize>12</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
@@ -176,9 +131,9 @@ QPushButton:hover {
 }</string>
           </property>
           <property name="title">
-           <string/>
+           <string>Imagen de la galeria:</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" rowminimumheight="0,0,0">
+          <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0">
            <property name="sizeConstraint">
             <enum>QLayout::SetDefaultConstraint</enum>
            </property>
@@ -214,6 +169,16 @@ QPushButton:hover {
              </property>
             </widget>
            </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="mas3_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Añadir +3 cap a Visto</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
             <widget class="QLabel" name="capTotales_label">
              <property name="font">
@@ -231,6 +196,35 @@ QPushButton:hover {
              </property>
             </widget>
            </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="anteriorWallpapaer_button">
+             <property name="font">
+              <font>
+               <family>Ink Free</family>
+               <pointsize>20</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>←</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="mas10_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Añadir +10 cap a Visto</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
             <widget class="QLabel" name="porcentajeVisto_label">
              <property name="font">
@@ -245,54 +239,33 @@ QPushButton:hover {
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="mas1_button">
-             <property name="text">
-              <string>Añadir +1 cap a Visto</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="mas3_button">
-             <property name="text">
-              <string>Añadir +3 cap a Visto</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="2">
             <widget class="QPushButton" name="mas5_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="text">
               <string>Añadir +5 cap a Visto</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="mas10_button">
-             <property name="text">
-              <string>Añadir +10 cap a Visto</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="anteriorWallpapaer_button">
-             <property name="font">
-              <font>
-               <family>Ink Free</family>
-               <pointsize>20</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>←</string>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="2">
             <widget class="QPushButton" name="posteriorWallpapaper_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="text">
               <string>→</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="mas1_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="text">
+              <string>Añadir +1 cap a Visto</string>
              </property>
             </widget>
            </item>
@@ -332,7 +305,16 @@ background-color: rgb(255, 255, 255)
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="groupBox_historial">
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+ font: 24pt &quot;Ink Free&quot;;
+text-decoration: underline;
+}
+QLabel{
+ font: 16pt &quot;Ink Free&quot;;
+}</string>
+          </property>
           <property name="title">
            <string>Datos de los capítulos vistos:</string>
           </property>
@@ -348,23 +330,33 @@ background-color: rgb(255, 255, 255)
             <widget class="QLineEdit" name="capitulo_LE"/>
            </item>
            <item row="1" column="0">
+            <widget class="QLabel" name="titulo_label">
+             <property name="text">
+              <string>Título</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="titulo_LE"/>
+           </item>
+           <item row="2" column="0">
             <widget class="QLabel" name="dia_label">
              <property name="text">
               <string>Día</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="2" column="1">
             <widget class="QLineEdit" name="dia_LE"/>
            </item>
-           <item row="2" column="0">
+           <item row="3" column="0">
             <widget class="QLabel" name="personas_label">
              <property name="text">
               <string>Personas</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="3" column="1">
             <widget class="QLineEdit" name="personas_LE"/>
            </item>
           </layout>
@@ -372,6 +364,65 @@ background-color: rgb(255, 255, 255)
         </item>
         <item>
          <widget class="QColumnView" name="tablaDB"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="main_tab">
+       <property name="styleSheet">
+        <string notr="true">QWidget#main_tab{
+}</string>
+       </property>
+       <attribute name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/logo/logoOnePiece2.png</normaloff>:/logo/logoOnePiece2.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Galería</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="subirIMG_label">
+          <property name="minimumSize">
+           <size>
+            <width>600</width>
+            <height>338</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>1920</width>
+            <height>1080</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="resources.qrc">:/luffy/imgGaleria.jpg</pixmap>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="guardarIMG_button">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Guardar</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -384,7 +435,7 @@ background-color: rgb(255, 255, 255)
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1055</width>
+     <width>630</width>
      <height>18</height>
     </rect>
    </property>

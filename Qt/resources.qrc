@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="luffy">
+    <file>imgGaleria.jpg</file>
     <file>mundoLogo.jfif</file>
     <file>LSHD.jpg</file>
     <file>merry2.jpg</file>

@@ -274,6 +274,7 @@ class Ui_MainWindow(object):
 
         self.capitulo_LE = QLineEdit(self.groupBox_historial)
         self.capitulo_LE.setObjectName(u"capitulo_LE")
+        self.capitulo_LE.setPlaceholderText("Número de capítulo")
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.capitulo_LE)
 
@@ -284,6 +285,7 @@ class Ui_MainWindow(object):
 
         self.titulo_LE = QLineEdit(self.groupBox_historial)
         self.titulo_LE.setObjectName(u"titulo_LE")
+        self.titulo_LE.setPlaceholderText("Título del capítulo")
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.titulo_LE)
 
@@ -294,6 +296,7 @@ class Ui_MainWindow(object):
 
         self.dia_LE = QLineEdit(self.groupBox_historial)
         self.dia_LE.setObjectName(u"dia_LE")
+        self.dia_LE.setPlaceholderText("Día y hora en la que se vió el capítulo")
 
         self.formLayout.setWidget(2, QFormLayout.FieldRole, self.dia_LE)
 
@@ -304,6 +307,7 @@ class Ui_MainWindow(object):
 
         self.personas_LE = QLineEdit(self.groupBox_historial)
         self.personas_LE.setObjectName(u"personas_LE")
+        self.personas_LE.setPlaceholderText("Personas que vieron el capítulo")
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.personas_LE)
 

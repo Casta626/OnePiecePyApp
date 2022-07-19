@@ -1,7 +1,9 @@
 # This Python file uses the following encoding: utf-8
+import cv2
+import os
 from importlib.metadata import SelectableGroups
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlRelation, QSqlRelationalTableModel
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
@@ -28,8 +30,10 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
         print(self.lastCap)
         self.porcentaje = self.obtenerPorcentajeYDiferencia(self.currentCap, int(self.lastCap))
 
+        self.actualizarGaleriaCB()
+        self.fondos_CB.currentIndexChanged.connect(self.cambiarFondo)
+        #self.subirIMG_label.clicked.connect(self.galeria)
         
-
         self.action_1_Cap.triggered.connect(self.nueva1)
         self.action_3_Cap.triggered.connect(self.nueva3)
         self.action_5_Cap.triggered.connect(self.nueva5)
@@ -61,9 +65,20 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
             ("Porcentaje: " + str(rendondeo)+"%"))
         self.capVistos_label.setText("Capítulos vistos: "+str(self.currentCap))
         self.capTotales_label.setText("Capítulos totales: "+str(self.lastCap))
+        if diferencia == 0:
+            self.gB_SC.setTitle("Llegaste al último capítulo")
+        if diferencia > 0:
+            self.gB_SC.setTitle("Faltan "+str(diferencia)+" capítulos")
+        # print("Diferencia: " + str(diferencia))
+        #if self.capActual.endswith("0"):
+            # Si el capítulo actual termina en 0, es porque estamos en el capítulo 10
+            #self.gB_SC.setTitle("Otros 10 capítulos fuera")
+        #if self.capActual.endswith("00"):
+            # Si el capítulo actual termina en 00, es porque estamos en el capítulo 100
+            #self.gB_SC.setTitle(
+                #"Ya te has ventilado otros 100 capítulos, ya queda menos")
         
-
-# https://www.delftstack.com/es/howto/python/python-repeat-n-times/#:~:text=veces%20en%20Python.-,Repita%20N%20veces%20en%20Python%20usando%20la%20funci%C3%B3n%20range(),funci%C3%B3n%20range()%20en%20Python.
+        # Hacer los textos sorpresa del Group Box
     def avanzarHastaUltimoCap(self):
 
         self.db = QSqlDatabase("QSQLITE")
@@ -268,6 +283,63 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
             self.dia_LE.setText("")
             self.personas_LE.setText("")
             self.db.close()
+
+    def galeria(self):
+        #input_images_path = "Imagenes"
+        #files_names = os.listdir(input_images_path)
+        
+        file_filter = "Archivo .png, .jpg, .jpeg (*.png *.jpg *.jpeg);"
+        response = QFileDialog.getOpenFileNames(
+            parent=self,
+            caption="Seleciona una o más imágenes",
+            filter=file_filter,
+        )
+        files_names = response[0]
+        
+
+
+        output_images_path = "Imagenes_Galeria_Prueba"
+        if not os.path.exists(output_images_path):
+            os.mkdir(output_images_path)
+
+
+        for i in files_names:
+            image = cv2.imread(i)
+            dividirRuta = i.split("/")
+            numMaxRuta = len(dividirRuta)
+            print(numMaxRuta)
+            nombreArchivo= (dividirRuta[numMaxRuta-1])
+            if i is None:
+                continue
+
+            cv2.imwrite(output_images_path + "/" + nombreArchivo, image)
+
+        self.actualizarGaleriaCB()
+
+    def actualizarGaleriaCB(self):
+        galeria = 'Imagenes_Galeria'
+        if not os.path.exists(galeria):
+            os.mkdir(galeria)
+        listaArchivos = os.listdir(galeria)
+        
+
+        for archivo in listaArchivos:
+            if archivo.endswith(".jpg"):
+                self.fondos_CB.addItem(archivo)
+                if archivo is None:
+                    continue
+            if archivo.endswith(".png"):
+                self.fondos_CB.addItem(archivo)
+                if archivo is None:
+                    continue
+            if archivo.endswith(".jpeg"):
+                self.fondos_CB.addItem(archivo)
+                if archivo is None:
+                    continue
+
+    def cambiarFondo(self):
+        self.imgFondo_label.setPixmap(QPixmap("Imagenes_Galeria/"+str(self.fondos_CB.currentText())))
+        
 
 
 if __name__ == "__main__":

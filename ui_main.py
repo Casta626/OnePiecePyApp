@@ -21,10 +21,13 @@ from PySide6.QtWidgets import (QApplication, QColumnView, QFormLayout, QGridLayo
     QLayout, QLineEdit, QMainWindow, QMenu,
     QMenuBar, QPushButton, QSizePolicy, QStatusBar,
     QTabWidget, QTableView, QToolBar, QVBoxLayout,
-    QWidget)
+    QWidget, QComboBox)
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 import recursos
+
+
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -80,6 +83,7 @@ class Ui_MainWindow(object):
         self.tabs.setStyleSheet(u"QTabWidget{\n"
 "	background-color: rgb(0, 85, 255);\n"
 "}\n"
+"QLineEdit { background-color: white; border: 2px solid black; }" "\n"
 "\n"
 "QPushButton {\n"
 " font: 20pt \"Ink Free\";\n"
@@ -101,9 +105,10 @@ class Ui_MainWindow(object):
         self.imgFondo_label = QLabel(self.Fondos)
         self.imgFondo_label.setObjectName(u"label")
         self.imgFondo_label.setMinimumSize(QSize(600, 338))
-        self.imgFondo_label.setMaximumSize(QSize(1920, 1080))
         self.imgFondo_label.setPixmap(QPixmap(u":/luffy/luffyultrainstinto.jpg"))
         self.imgFondo_label.setAlignment(Qt.AlignCenter)
+        self.imgFondo_label.setScaledContents(True)
+
 
         self.verticalLayout_2.addWidget(self.imgFondo_label)
 
@@ -333,7 +338,7 @@ class Ui_MainWindow(object):
         self.subirIMG_label = QLabel(self.main_tab)
         self.subirIMG_label.setObjectName(u"subirIMG_label")
         self.subirIMG_label.setMinimumSize(QSize(600, 338))
-        self.subirIMG_label.setMaximumSize(QSize(1920, 1080))
+        self.subirIMG_label.setScaledContents(True)
         self.subirIMG_label.setBaseSize(QSize(0, 0))
         self.subirIMG_label.setCursor(QCursor(Qt.PointingHandCursor))
         self.subirIMG_label.setPixmap(QPixmap(u":/luffy/imgGaleria.jpg"))
@@ -341,11 +346,19 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.subirIMG_label)
 
-        self.guardarIMG_button = QPushButton(self.main_tab)
-        self.guardarIMG_button.setObjectName(u"guardarIMG_button")
-        self.guardarIMG_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.fondos_CB = QComboBox(self.main_tab)
+        self.fondos_CB.setObjectName(u"fondos_CB")
+        self.fondos_CB.setCursor(QCursor(Qt.PointingHandCursor))
+        self.fondos_CB.setStyleSheet(u"QComboBox{\n"
+"background-color: rgb(255, 255, 135);\n"
+"border-radius: 10px;\n"
+"border: 2px solid rgb(0, 0, 0);\n"
+"font: 16pt \"Ink Free\";\n"
+"text-align:center;\n"
+"padding: 2px;\n"
+"}\n")
 
-        self.verticalLayout_4.addWidget(self.guardarIMG_button)
+        self.verticalLayout_4.addWidget(self.fondos_CB)
 
         icon10 = QIcon()
         icon10.addFile(u":/logo/logoOnePiece2.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -442,7 +455,7 @@ class Ui_MainWindow(object):
         self.personas_label.setText(QCoreApplication.translate("MainWindow", u"Personas", None))
         self.tabs.setTabText(self.tabs.indexOf(self.historial), QCoreApplication.translate("MainWindow", u"Historial", None))
         self.subirIMG_label.setText("")
-        self.guardarIMG_button.setText(QCoreApplication.translate("MainWindow", u"Guardar", None))
+        self.fondos_CB.setCurrentText(QCoreApplication.translate("MainWindow", u"Guardar", None))
         self.tabs.setTabText(self.tabs.indexOf(self.main_tab), QCoreApplication.translate("MainWindow", u"Galer\u00eda", None))
         self.menuCap.setTitle(QCoreApplication.translate("MainWindow", u"Cap\u00edtulos", None))
         self.menuAnadir_Cap.setTitle(QCoreApplication.translate("MainWindow", u"A\u00f1adir Cap\u00edtulos", None))

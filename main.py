@@ -1,13 +1,11 @@
 # This Python file uses the following encoding: utf-8
-import cv2
+import cv2    
 import os
-from importlib.metadata import SelectableGroups
-import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
-from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlRelation, QSqlRelationalTableModel
+from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlRelationalTableModel
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
-from PySide6.QtGui import (QPixmap)
+from PySide6.QtWidgets import QAbstractItemView, QMessageBox, QTableView
+from PySide6.QtGui import QPixmap,  QIntValidator
 from datetime import datetime
 
 from ui_main import Ui_MainWindow
@@ -22,24 +20,22 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
         self.lastCap = webScraping.ObtenerUltimoCapitulo().get_last_episode()
         self.currentCap = 0
     
-        print(self.currentCap)
         self.actualizarUltimoCap()
-        print(self.currentCap)
 
         self.capActual = str(self.currentCap)
-        print(self.lastCap)
         self.porcentaje = self.obtenerPorcentajeYDiferencia(self.currentCap, int(self.lastCap))
 
         self.actualizarGaleriaCB()
+        
         self.fondos_CB.currentIndexChanged.connect(self.cambiarFondo)
-        #self.subirIMG_label.clicked.connect(self.galeria)
+        self.subirIMG_label.clicked.connect(self.galeria)
         
         self.action_1_Cap.triggered.connect(self.nueva1)
         self.action_3_Cap.triggered.connect(self.nueva3)
         self.action_5_Cap.triggered.connect(self.nueva5)
         self.action_10_Cap.triggered.connect(self.nueva10)
 
-        self.actionActual_Cap.triggered.connect(self.avanzarHastaUltimoCap)
+        self.actionActual_Cap.triggered.connect(self.abrirVentanaExtra)
 
         self.actionEditar_Cap.triggered.connect(self.modificar)
         self.actionEliminar_Cap.triggered.connect(self.borrar)
@@ -54,6 +50,8 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
         # self.imgFondo_label.setPixmap(QPixmap("logoOnePiece2.png"))
 
         self.conectar()
+
+        self.dialog = Ventana(self)
 
     def actualizarUltimoCap(self):
         self.currentCap = int(self.ObtenerUltimoCapVisto())
@@ -79,25 +77,50 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
                 #"Ya te has ventilado otros 100 capítulos, ya queda menos")
         
         # Hacer los textos sorpresa del Group Box
-    def avanzarHastaUltimoCap(self):
 
+        ######################################
+    def abrirVentanaExtra(self):
+        self.dialog.ok_boton.clicked.connect(self.avanzarHastaCapActual)
+        self.dialog.cancel_boton.clicked.connect(self.dialog.close)
+
+        self.dialog.show()
+
+
+    def avanzarHastaCapActual(self):
+        self.lastCap2 = webScraping.ObtenerUltimoCapitulo().get_last_episode()
         self.db = QSqlDatabase("QSQLITE")
         self.db.setDatabaseName("OnePieceDB.sqlite")
 
         self.db.open()
         
         self.currentCap = int(self.ObtenerUltimoCapVisto())
-        print(self.currentCap)
-        a = 102-87
-        num = a
-        #for i in range(num):
-            #avanzarHastaUltimoCap()
-        dialog = Ventana(self)  # self hace referencia al padre
 
-        dialog.show()
+        # integers 1 to 9999
+        validator = QIntValidator(1, 9999)
+
+        self.dialog.capInf_LE.setValidator(validator)
+
+        print("Aqui "+self.dialog.capInf_LE.text())
+
+        diferencia = int(self.dialog.capInf_LE.text()) - int(self.currentCap)
+
+        print(diferencia)
+
+        print(self.lastCap2)
+
+        if int(self.dialog.capInf_LE.text()) < int(self.lastCap2):
+            if diferencia < int(self.lastCap2):
+                if diferencia > 0:
+                    for i in range(diferencia):
+                        print(i)
+                        self.nueva1()
+        
+
 
         self.db.close()
 
+    
+####################################################
     def obtenerPorcentajeYDiferencia(self, currentCap, lastCap):
         porcentaje = (currentCap*100) / lastCap
         rendondeo = round(porcentaje, 2)
@@ -161,6 +184,8 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
 
         # Ponemos la fila inicial a un valor que indica que no está seleccionada ninguna fila
         self.fila = -1
+
+    
 
     def ObtenerUltimoCapVisto(self):
         self.db = QSqlDatabase("QSQLITE")
@@ -284,6 +309,8 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
             self.personas_LE.setText("")
             self.db.close()
 
+            self.actualizarUltimoCap()
+
     def galeria(self):
         #input_images_path = "Imagenes"
         #files_names = os.listdir(input_images_path)
@@ -298,7 +325,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
         
 
 
-        output_images_path = "Imagenes_Galeria_Prueba"
+        output_images_path = "Imagenes_Galeria"
         if not os.path.exists(output_images_path):
             os.mkdir(output_images_path)
 
@@ -307,7 +334,7 @@ class MainWindow(QMainWindow, Ui_MainWindow, Ventana):
             image = cv2.imread(i)
             dividirRuta = i.split("/")
             numMaxRuta = len(dividirRuta)
-            print(numMaxRuta)
+            #print(numMaxRuta)
             nombreArchivo= (dividirRuta[numMaxRuta-1])
             if i is None:
                 continue

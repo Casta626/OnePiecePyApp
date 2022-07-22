@@ -10,12 +10,14 @@
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
+    QSize, QTime, QUrl, Qt, Signal)
 from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QCursor, QFont, QFontDatabase, QGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
+
+
 from PySide6.QtWidgets import (QApplication, QColumnView, QFormLayout, QGridLayout,
     QGroupBox, QHBoxLayout, QHeaderView, QLabel,
     QLayout, QLineEdit, QMainWindow, QMenu,
@@ -26,6 +28,12 @@ from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWebEngineCore import QWebEngineSettings
 import recursos
 
+class Clickable(QLabel):
+        clicked = Signal()
+        def mousePressEvent(self, event):
+                self.clicked.emit()
+                QLabel.mousePressEvent(self, event)
+        
 
 
 
@@ -318,11 +326,10 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_6.addWidget(self.groupBox_historial)
-
+        self.tablaIMG = QTableView()
 
         self.tablaDB = QTableView(self.historial)
         self.tablaDB.setObjectName(u"tablaDB")
-        self.tablaDB.showFullScreen()
 
         self.verticalLayout_6.addWidget(self.tablaDB)
 
@@ -335,13 +342,13 @@ class Ui_MainWindow(object):
 "}")
         self.verticalLayout_4 = QVBoxLayout(self.main_tab)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.subirIMG_label = QLabel(self.main_tab)
+        self.subirIMG_label = Clickable(self.main_tab)
         self.subirIMG_label.setObjectName(u"subirIMG_label")
         self.subirIMG_label.setMinimumSize(QSize(600, 338))
         self.subirIMG_label.setScaledContents(True)
         self.subirIMG_label.setBaseSize(QSize(0, 0))
         self.subirIMG_label.setCursor(QCursor(Qt.PointingHandCursor))
-        self.subirIMG_label.setPixmap(QPixmap(u":/luffy/imgGaleria.jpg"))
+        self.subirIMG_label.setPixmap(QPixmap("merryhd.png"))
         self.subirIMG_label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_4.addWidget(self.subirIMG_label)
@@ -402,7 +409,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs.setCurrentIndex(2)
+        self.tabs.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

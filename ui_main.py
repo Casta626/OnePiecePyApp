@@ -45,6 +45,9 @@ class Ui_MainWindow(object):
         MainWindow.setAutoFillBackground(False)
         MainWindow.setWindowTitle('One Piece')
         MainWindow.setStyleSheet(u"")
+
+        QFontDatabase.addApplicationFont("OPfont.ttf")
+
         self.action_1_Cap = QAction(MainWindow)
         self.action_1_Cap.setObjectName(u"action_1_Cap")
         icon = QIcon()
@@ -94,7 +97,7 @@ class Ui_MainWindow(object):
 "QLineEdit { background-color: white; border: 2px solid black; }" "\n"
 "\n"
 "QPushButton {\n"
-" font: 20pt \"Ink Free\";\n"
+" font: 20pt \"ONE PIECE\";\n"
 " border: 1px solid black;\n"
 " border-radius: 5px ;\n"
 " background-color: rgb(255, 255, 135);\n"
@@ -160,7 +163,7 @@ class Ui_MainWindow(object):
         self.gB_SC = QGroupBox(self.salaControl_tab)
         self.gB_SC.setObjectName(u"gB_SC")
         font = QFont()
-        font.setFamilies([u"Ink Free"])
+        font.setFamilies([u"ONE PIECE"])
         font.setPointSize(12)
         font.setBold(False)
         self.gB_SC.setFont(font)
@@ -177,7 +180,7 @@ class Ui_MainWindow(object):
         self.capVistos_label = QLabel(self.gB_SC)
         self.capVistos_label.setObjectName(u"capVistos_label")
         font1 = QFont()
-        font1.setFamilies([u"Ink Free"])
+        font1.setFamilies([u"ONE PIECE"])
         font1.setPointSize(20)
         font1.setUnderline(True)
         self.capVistos_label.setFont(font1)
@@ -201,7 +204,7 @@ class Ui_MainWindow(object):
         self.anteriorWallpapaer_button = QPushButton(self.gB_SC)
         self.anteriorWallpapaer_button.setObjectName(u"anteriorWallpapaer_button")
         font2 = QFont()
-        font2.setFamilies([u"Ink Free"])
+        font2.setFamilies([u"ONE PIECE"])
         font2.setPointSize(20)
         font2.setBold(False)
         font2.setItalic(False)
@@ -272,11 +275,11 @@ class Ui_MainWindow(object):
         self.groupBox_historial = QGroupBox(self.historial)
         self.groupBox_historial.setObjectName(u"groupBox_historial")
         self.groupBox_historial.setStyleSheet(u"QGroupBox {\n"
-" font: 24pt \"Ink Free\";\n"
+" font: 24pt \"ONE PIECE\";\n"
 "text-decoration: underline;\n"
 "}\n"
 "QLabel{\n"
-" font: 16pt \"Ink Free\";\n"
+" font: 16pt \"ONE PIECE\";\n"
 "}")
         self.formLayout = QFormLayout(self.groupBox_historial)
         self.formLayout.setObjectName(u"formLayout")
@@ -360,7 +363,7 @@ class Ui_MainWindow(object):
 "background-color: rgb(255, 255, 135);\n"
 "border-radius: 10px;\n"
 "border: 2px solid rgb(0, 0, 0);\n"
-"font: 16pt \"Ink Free\";\n"
+"font: 16pt \"ONE PIECE\";\n"
 "text-align:center;\n"
 "padding: 2px;\n"
 "}\n")

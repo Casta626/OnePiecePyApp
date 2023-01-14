@@ -13,6 +13,9 @@
     <file>gear4TankMan.jpg</file>
     <file>luffyultrainstinto.jpg</file>
   </qresource>
+  <qresource prefix="font">
+    <file>OPfont.ttf</file>
+  </qresource>
   <qresource prefix="Actions">
     <file>infinitoLogo.png</file>
     <file>3logo.png</file>
